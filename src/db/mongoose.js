@@ -7,7 +7,5 @@ mongoose.connect(process.env.MONGODB_URL , {     // veritabanına bağlanmak iç
     useUnifiedTopology: true,
     useFindAndModify: false
 })
-
-
 // Mongoose veri tabanında herhangi bir collection oluşturmamama rağmen "users" adında bir collection oluşturdu. Bu Mongoose
 // tarafından oluşturduğumuz modelin ismini alıp küçük harflere dönüştürüp onu çoğul hale getirerek otomatik olarak yapar.
