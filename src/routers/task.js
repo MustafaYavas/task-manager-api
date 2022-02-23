@@ -3,11 +3,13 @@ const router = new express.Router();
 const Task = require("../models/task");
 const auth = require("../middleware/auth");
 
-// 500 - Internal Server Error
-// 404 - Not Found
-// 403 - Forbidden
-// 401 - Unauthorized
-// 400 - Bad Request
+/*
+500 - Internal Server Error
+404 - Not Found
+403 - Forbidden
+401 - Unauthorized
+400 - Bad Request
+*/
 
 router.post("/tasks", auth, async (req, res) => {
     const task = new Task({
