@@ -85,7 +85,6 @@ userSchema.methods.generateAuthToken = async function(){
     return token;
 }
 
-
 userSchema.statics.findByCredentials = async (email, password) => { 
     const user = await User.findOne({email});
     if(!user){
@@ -120,6 +119,5 @@ userSchema.pre("remove", async function(next) {
 })
 
 const User = mongoose.model("User", userSchema)
-
 
 module.exports = User;
