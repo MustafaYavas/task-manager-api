@@ -3,11 +3,11 @@ const router = new express.Router();
 const Task = require("../models/task");
 const auth = require("../middleware/auth");
 
-// 500 - veri tabanına bağlanma sorunu
-// 404 - not found
-// 403 - forbidden
-// 401 - unauthorized
-// 400 - hatalı request
+// 500 - Internal Server Error
+// 404 - Not Found
+// 403 - Forbidden
+// 401 - Unauthorized
+// 400 - Bad Request
 
 router.post("/tasks", auth, async (req, res) => {
     const task = new Task({
@@ -26,13 +26,13 @@ router.post("/tasks", auth, async (req, res) => {
 
 // GET /tasks?completed=true (veya false)
 // GET /tasks?limit=10&skip=20
-// GET /tasks?sortBy=createdAt:desc         // : yerine _ kullanılabilir
+// GET /tasks?sortBy=createdAt:desc         
 router.get("/tasks", auth, async (req, res) => {
     const match = {};
     const sort = {};
 
     if(req.query.completed){
-        match.completed = req.query.completed === "true";     // böyle yaparak match nesnesinde completed adında bir property oluşturduk
+        match.completed = req.query.completed === "true";    
     }
 
     if(req.query.sortBy){
@@ -41,7 +41,7 @@ router.get("/tasks", auth, async (req, res) => {
     }
 
     try {
-        // const tasks = await Task.find({owner: req.user._id});    // bu da işe yarıyor
+       
         await req.user.populate({
             path: "tasks",
             match,
@@ -82,7 +82,7 @@ router.patch("/tasks/:id", auth, async (req, res) => {
         return res.status(400).send("Error: Invalid update. Given field is not found");
     }
     try {
-        // const task = await Task.findById(_id);
+        
         const task = await Task.findOne({_id, owner: req.user._id});
 
         if(!task){
