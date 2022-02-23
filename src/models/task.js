@@ -11,9 +11,9 @@ const taskSchema = new mongoose.Schema({
         default: false
     },
     owner: {
-        type: mongoose.Schema.Types.ObjectId,   // depolanan verilerin ve sahibinin bir nesne kimliği olacağını söylüyor
+        type: mongoose.Schema.Types.ObjectId, 
         required: true,
-        ref: "User"   // başka bir koleksiyondan referans
+        ref: "User" 
     }
 }, {
     timestamps: true
